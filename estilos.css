@@ -1,0 +1,244 @@
+
+        /* ============================================================
+           SECCIÓN CSS
+           ============================================================
+           CSS sirve para darle estilo (colores, tamaños, espacios)
+           a las etiquetas HTML. Aquí usamos "variables CSS" (los
+           :root { --nombre: valor; }) para no repetir colores por
+           todo el archivo: si luego quieres cambiar el color
+           principal, solo lo cambias UNA vez aquí arriba.
+        ============================================================ */
+
+        :root {
+            --color-primario: #002556;      /* Azul oscuro - menú lateral */
+            --color-primario-claro: #2c5282; /* Azul un poco más claro (hover) */
+            --color-secundario: #2f855a;     /* Verde - botones de "guardar" */
+            --color-peligro: #c53030;        /* Rojo - botones de "eliminar" */
+            --color-fondo: #f4f6f8;          /* Gris muy claro - fondo general */
+            --color-borde: #d9dfe4;          /* Gris para bordes de tablas/inputs */
+            --color-texto: #2d3748;          /* Casi negro para el texto */
+            --radio-bordes: 8px;             /* Bordes redondeados reutilizables */
+        }
+
+        /* El "*" selecciona TODOS los elementos de la página.
+           Esto es una práctica común para "resetear" márgenes y
+           rellenos que el navegador pone por defecto. */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Hace que el ancho/alto incluyan el padding */
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+        }
+
+        /* Contenedor general: usamos "flex" para poner el menú
+           lateral y el contenido uno al lado del otro. */
+        .contenedor-app {
+            display: flex;
+            min-height: 100vh; /* 100% del alto de la pantalla */
+        }
+
+        /* ---------- MENÚ LATERAL (barra izquierda) ---------- */
+        .menu-lateral {
+            width: 240px;
+            background-color: var(--color-primario);
+            color: white;
+            display: flex;
+            flex-direction: column; /* los elementos van uno debajo del otro */
+            flex-shrink: 0; /* que no se encoja si la pantalla es pequeña */
+        }
+
+        .menu-lateral .logo {
+            padding: 22px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .menu-lateral .logo span {
+            display: block;
+            font-size: 12px;
+            font-weight: normal;
+            opacity: 0.75;
+            margin-top: 4px;
+        }
+
+        /* Cada botón del menú. Usamos <button> en vez de <a> porque
+           no vamos a cambiar de página real, solo mostrar/ocultar
+           secciones con JavaScript. */
+        .menu-lateral button {
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            padding: 16px 22px;
+            font-size: 15px;
+            cursor: pointer; /* el cursor cambia a "manito" al pasar encima */
+            border-left: 4px solid transparent; /* espacio reservado para el efecto activo */
+            transition: 0.2s; /* animación suave al cambiar de color */
+        }
+
+        .menu-lateral button:hover {
+            background-color: var(--color-primario-claro);
+        }
+
+        /* Esta clase se agrega/quita con JavaScript para marcar
+           cuál botón del menú está activo actualmente */
+        .menu-lateral button.activo {
+            background-color: var(--color-primario-claro);
+            border-left: 4px solid var(--color-secundario);
+            font-weight: bold;
+        }
+
+        /* ---------- CONTENIDO PRINCIPAL (lado derecho) ---------- */
+        .contenido-principal {
+            flex: 1; /* ocupa todo el espacio restante */
+            padding: 30px;
+            max-width: 1100px;
+        }
+
+        .encabezado-seccion {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .encabezado-seccion h1 {
+            font-size: 22px;
+            color: var(--color-primario);
+        }
+
+        /* Cada "sección" (Ingreso, Proveedores, Productos, etc.)
+           está oculta por defecto con display:none. JavaScript le
+           agrega la clase "seccion-activa" a la que corresponde
+           mostrar, y esa clase la vuelve visible. */
+        .seccion {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: var(--radio-bordes);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+
+        .seccion.seccion-activa {
+            display: block;
+        }
+
+        /* ---------- FORMULARIOS ---------- */
+        .formulario {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* dos columnas iguales */
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campo label {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--color-primario);
+        }
+
+        .campo input,
+        .campo select {
+            padding: 9px 10px;
+            border: 1px solid var(--color-borde);
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .mensaje-error {
+            grid-column: 1 / -1; /* ocupa las dos columnas */
+            color: var(--color-peligro);
+            font-size: 13px;
+            font-weight: bold;
+            min-height: 18px; /* reserva espacio aunque esté vacío */
+        }
+
+        /* Botones reutilizables */
+        .boton {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+
+        .boton-guardar {
+            background-color: var(--color-secundario);
+            grid-column: 1 / -1;
+            justify-self: start; /* que el botón no se estire todo el ancho */
+        }
+
+        .boton-guardar:hover { opacity: 0.9; }
+
+        .boton-eliminar {
+            background-color: var(--color-peligro);
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        /* ---------- TABLAS ---------- */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* que los bordes no se dupliquen */
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid var(--color-borde);
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: var(--color-fondo);
+            color: var(--color-primario);
+        }
+
+        .tabla-vacia {
+            text-align: center;
+            color: #888;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        /* ---------- PANTALLA DE INGRESO (LOGIN) ---------- */
+        .caja-login {
+            max-width: 380px;
+            margin: 40px auto;
+        }
+
+        .bienvenida {
+            background-color: #e6fffa;
+            border: 1px solid var(--color-secundario);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        /* Cuando la app está "bloqueada" (nadie ha iniciado sesión)
+           ocultamos el menú de las otras secciones con esta clase */
+        .menu-lateral button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Para que se vea bien también en pantallas pequeñas (celular) */
+        @media (max-width: 700px) {
+            .contenedor-app { flex-direction: column; }
+            .menu-lateral { width: 100%; }
+            .formulario { grid-template-columns: 1fr; }
+        }
