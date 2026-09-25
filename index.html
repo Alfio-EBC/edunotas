@@ -1,248 +1,500 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNotas</title>
-<link rel="stylesheet" href="/estilos.css">
-<script src="/script.js"></script>
-<body>
-
-    <!-- ============================================================
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EduNotas</title>
+        <link rel="stylesheet" href="/estilos.css" />
+    </head>
+    <body>
+        <!-- ============================================================
          SECCIÓN HTML (estructura de la página)
          ============================================================ -->
 
-    <div class="contenedor-app">
+        <div class="contenedor-app">
+            <!-- ---------- MENÚ LATERAL ---------- -->
+            <nav class="menu-lateral">
+                <button data-seccion="ingreso" class="boton-menu activo" onclick="mostrarSeccion('ingreso')">
+                    <i data-lucide="clipboard-plus"></i>
+                    <span>Ingreso</span>
+                </button>
 
-        <!-- ---------- MENÚ LATERAL ---------- -->
-        <nav class="menu-lateral">
-            <div class="logo">
-                EduNotas
-                <span>Sistema de gestión</span>
-            </div>
+                <button data-seccion="proveedores" class="boton-menu" onclick="mostrarSeccion('proveedores')" disabled>
+                    <i data-lucide="list-checks"></i>
+                    <span>Tareas</span>
+                </button>
 
-            <!--
-                Cada botón tiene un atributo "data-seccion" que
-                indica QUÉ sección debe mostrar cuando se hace clic.
-                Usamos "data-*" porque son atributos personalizados
-                que nosotros inventamos para guardar información
-                útil para nuestro propio JavaScript.
+                <button data-seccion="productos" class="boton-menu" onclick="mostrarSeccion('productos')" disabled>
+                    <i data-lucide="calendar-days"></i>
+                    <span>Calendario</span>
+                </button>
 
-                El atributo onclick llama a la función mostrarSeccion()
-                que está definida más abajo en <script>.
-            -->
-            <button data-seccion="ingreso" class="boton-menu activo" onclick="mostrarSeccion('ingreso')">
-                🔑 Ingreso
-            </button>
-            <button data-seccion="proveedores" class="boton-menu" onclick="mostrarSeccion('proveedores')" disabled>
-                🚚 Proveedores
-            </button>
-            <button data-seccion="productos" class="boton-menu" onclick="mostrarSeccion('productos')" disabled>
-                📦 Productos
-            </button>
-            <button data-seccion="clientes" class="boton-menu" onclick="mostrarSeccion('clientes')" disabled>
-                🧑‍🤝‍🧑 Clientes
-            </button>
-            <button data-seccion="parametros" class="boton-menu" onclick="mostrarSeccion('parametros')" disabled>
-                ⚙️ Parámetros Generales
-            </button>
-        </nav>
+                <button data-seccion="clientes" class="boton-menu" onclick="mostrarSeccion('clientes')" disabled>
+                    <i data-lucide="graduation-cap"></i>
+                    <span>Profesores</span>
+                </button>
 
-        <!-- ---------- CONTENIDO PRINCIPAL ---------- -->
-        <main class="contenido-principal">
+                <button data-seccion="parametros" class="boton-menu" onclick="mostrarSeccion('parametros')" disabled>
+                    <i data-lucide="users"></i>
+                    <span>Padres</span>
+                </button>
+            </nav>
 
-            <!-- ============ SECCIÓN 1: INGRESO (LOGIN) ============ -->
-            <!-- Esta sección empieza activa porque es la primera
+            <!-- ---------- CONTENIDO PRINCIPAL ---------- -->
+            <main class="contenido-principal">
+                <div class="logo">
+                    <strong>EduNotas</strong>
+                    <span>Sistema de gestión</span>
+                </div>
+                <!-- ============ SECCIÓN 1: INGRESO (LOGIN) ============ -->
+                <!-- Esta sección empieza activa porque es la primera
                  pantalla que debe ver el usuario -->
-            <section id="seccion-ingreso" class="seccion seccion-activa">
-                <div class="encabezado-seccion">
-                    <h1>Ingreso al sistema</h1>
-                </div>
-
-                <div class="caja-login">
-                    <div class="formulario" style="grid-template-columns: 1fr;">
-                        <div class="campo">
-                            <label for="usuario">Usuario</label>
-                            <input type="text" id="usuario" placeholder="Ej: admin">
-                        </div>
-                        <div class="campo">
-                            <label for="clave">Contraseña</label>
-                            <input type="password" id="clave" placeholder="Escribe tu contraseña">
-                        </div>
-                        <div id="error-login" class="mensaje-error"></div>
-                        <button class="boton boton-guardar" onclick="iniciarSesion()">Ingresar</button>
+                <section id="seccion-ingreso" class="seccion seccion-activa">
+                    <div class="encabezado-seccion">
+                        <h1>Ingreso al sistema</h1>
                     </div>
 
-                    <!-- Este mensaje aparece SOLO después de un login exitoso.
+                    <div class="caja-login">
+                        <div class="formulario" style="grid-template-columns: 1fr">
+                            <div class="campo">
+                                <label for="usuario">Usuario</label>
+                                <input type="text" id="usuario" placeholder="Ej: admin" />
+                            </div>
+                            <div class="campo">
+                                <label for="clave">Contraseña</label>
+                                <input type="password" id="clave" placeholder="Escribe tu contraseña" />
+                            </div>
+                            <div id="error-login" class="mensaje-error"></div>
+                            <button class="boton boton-guardar" onclick="iniciarSesion()">Ingresar</button>
+                        </div>
+
+                        <!-- Este mensaje aparece SOLO después de un login exitoso.
                          Está oculto (display:none) hasta que JavaScript lo muestre -->
-                    <div id="mensaje-bienvenida" class="bienvenida" style="display:none;"></div>
-                </div>
-            </section>
+                        <div id="mensaje-bienvenida" class="bienvenida" style="display: none"></div>
+                    </div>
+                </section>
 
-            <!-- ============ SECCIÓN 2: PROVEEDORES ============ -->
-            <section id="seccion-proveedores" class="seccion">
-                <div class="encabezado-seccion">
-                    <h1>Proveedores</h1>
-                </div>
+                <!-- ============ SECCIÓN 2: PROVEEDORES ============ -->
 
-                <!-- Formulario para agregar un proveedor nuevo -->
-                <div class="formulario">
-                    <div class="campo">
-                        <label for="prov-nombre">Nombre / Razón social</label>
-                        <input type="text" id="prov-nombre" placeholder="Ej: Distribuidora ABC">
+                <section id="seccion-proveedores" class="seccion">
+                    <div class="encabezado-seccion">
+                        <h1>Tareas asignadas</h1>
+                        <p>Consulta y administra las tareas asignadas.</p>
                     </div>
-                    <div class="campo">
-                        <label for="prov-nit">NIT</label>
-                        <input type="text" id="prov-nit" placeholder="Ej: 900123456-1">
-                    </div>
-                    <div class="campo">
-                        <label for="prov-telefono">Teléfono</label>
-                        <input type="text" id="prov-telefono" placeholder="Ej: 3001234567">
-                    </div>
-                    <div class="campo">
-                        <label for="prov-direccion">Dirección</label>
-                        <input type="text" id="prov-direccion" placeholder="Ej: Calle 10 #5-20">
-                    </div>
-                    <div id="error-proveedores" class="mensaje-error"></div>
-                    <button class="boton boton-guardar" onclick="agregarProveedor()">Guardar proveedor</button>
-                </div>
 
-                <!-- Tabla donde se listan los proveedores guardados -->
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>NIT</th>
-                            <th>Teléfono</th>
-                            <th>Dirección</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <!-- Este <tbody> empieza vacío. JavaScript va a
-                         insertar las filas (<tr>) aquí dinámicamente -->
-                    <tbody id="tabla-proveedores"></tbody>
-                </table>
-            </section>
+                    <!-- CONTADOR -->
+                    <div class="contador-tareas">
+                        <i data-lucide="list-checks"></i>
+                        <span>
+                            Tareas asignadas:
+                            <strong id="numero-tareas">3</strong>
+                        </span>
+                    </div>
 
-            <!-- ============ SECCIÓN 3: PRODUCTOS ============ -->
-            <section id="seccion-productos" class="seccion">
-                <div class="encabezado-seccion">
-                    <h1>Productos</h1>
-                </div>
+                    <!-- LISTA DE TAREAS -->
+                    <div class="lista-tareas">
+                        <!-- ========================= -->
+                        <!-- TAREA 1 -->
+                        <!-- ========================= -->
 
-                <div class="formulario">
-                    <div class="campo">
-                        <label for="prod-codigo">Código</label>
-                        <input type="text" id="prod-codigo" placeholder="Ej: PROD-001">
-                    </div>
-                    <div class="campo">
-                        <label for="prod-nombre">Nombre del producto</label>
-                        <input type="text" id="prod-nombre" placeholder="Ej: Cuaderno 100 hojas">
-                    </div>
-                    <div class="campo">
-                        <label for="prod-precio">Precio unitario</label>
-                        <input type="number" id="prod-precio" placeholder="Ej: 3500" min="0">
-                    </div>
-                    <div class="campo">
-                        <label for="prod-cantidad">Cantidad en stock</label>
-                        <input type="number" id="prod-cantidad" placeholder="Ej: 50" min="0">
-                    </div>
-                    <div id="error-productos" class="mensaje-error"></div>
-                    <button class="boton boton-guardar" onclick="agregarProducto()">Guardar producto</button>
-                </div>
+                        <div class="tarea-item">
+                            <!-- CABECERA -->
+                            <div class="tarea-cabecera">
+                                <div class="tarea-titulo">
+                                    <span class="numero-tarea">1</span>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Valor total</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-productos"></tbody>
-                </table>
-            </section>
+                                    <div>
+                                        <h3>Taller de matemáticas</h3>
+                                        <span class="grupo-tarea"> 6° - Grupo A </span>
+                                    </div>
+                                </div>
 
-            <!-- ============ SECCIÓN 4: CLIENTES ============ -->
-            <section id="seccion-clientes" class="seccion">
-                <div class="encabezado-seccion">
-                    <h1>Clientes</h1>
-                </div>
+                                <!-- BOTÓN ACORDEÓN -->
+                                <button
+                                    class="boton-acordeon"
+                                    onclick="mostrarDetalleTarea(this)"
+                                    aria-label="Mostrar información de la tarea"
+                                >
+                                    <i data-lucide="chevron-down"></i>
+                                </button>
+                            </div>
 
-                <div class="formulario">
-                    <div class="campo">
-                        <label for="cli-nombre">Nombre completo</label>
-                        <input type="text" id="cli-nombre" placeholder="Ej: Juan Pérez">
-                    </div>
-                    <div class="campo">
-                        <label for="cli-cedula">Cédula / Documento</label>
-                        <input type="text" id="cli-cedula" placeholder="Ej: 1098765432">
-                    </div>
-                    <div class="campo">
-                        <label for="cli-telefono">Teléfono</label>
-                        <input type="text" id="cli-telefono" placeholder="Ej: 3111234567">
-                    </div>
-                    <div class="campo">
-                        <label for="cli-correo">Correo electrónico</label>
-                        <input type="email" id="cli-correo" placeholder="Ej: correo@ejemplo.com">
-                    </div>
-                    <div id="error-clientes" class="mensaje-error"></div>
-                    <button class="boton boton-guardar" onclick="agregarCliente()">Guardar cliente</button>
-                </div>
+                            <!-- INFORMACIÓN OCULTA -->
+                            <div class="tarea-detalle">
+                                <div class="informacion-tarea">
+                                    <div>
+                                        <strong>Descripción</strong>
+                                        <p>Resolver los ejercicios de la página 25 del libro de matemáticas.</p>
+                                    </div>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Cédula</th>
-                            <th>Teléfono</th>
-                            <th>Correo</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-clientes"></tbody>
-                </table>
-            </section>
+                                    <div>
+                                        <strong>Fecha de entrega</strong>
+                                        <p>30/09/2026</p>
+                                    </div>
+                                </div>
 
-            <!-- ============ SECCIÓN 5: PARÁMETROS GENERALES ============ -->
-            <section id="seccion-parametros" class="seccion">
-                <div class="encabezado-seccion">
-                    <h1>Parámetros Generales</h1>
-                </div>
-                <p style="margin-bottom:15px; color:#555;">
-                    Aquí se configuran los datos generales que usa todo el
-                    sistema, como el nombre de la empresa, la moneda y el
-                    porcentaje de IVA que se aplicará a los productos.
-                </p>
+                                <!-- ACCIONES -->
+                                <div class="acciones-tarea">
+                                    <button
+                                        class="boton-accion boton-enviar"
+                                        onclick="enviarTarea(1)"
+                                        title="Enviar tarea"
+                                    >
+                                        <i data-lucide="send"></i>
+                                        <span>Enviar</span>
+                                    </button>
 
-                <div class="formulario">
-                    <div class="campo">
-                        <label for="param-empresa">Nombre de la empresa</label>
-                        <input type="text" id="param-empresa" placeholder="Ej: Mi Empresa S.A.S">
+                                    <button
+                                        class="boton-accion boton-subir"
+                                        onclick="subirInformacion(1)"
+                                        title="Subir información"
+                                    >
+                                        <i data-lucide="upload"></i>
+                                        <span>Subir información</span>
+                                    </button>
+
+                                    <button
+                                        class="boton-accion boton-eliminar"
+                                        onclick="eliminarTarea(1)"
+                                        title="Eliminar tarea"
+                                    >
+                                        <i data-lucide="trash-2"></i>
+                                        <span>Eliminar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ========================= -->
+                        <!-- TAREA 2 -->
+                        <!-- ========================= -->
+
+                        <div class="tarea-item">
+                            <div class="tarea-cabecera">
+                                <div class="tarea-titulo">
+                                    <span class="numero-tarea">2</span>
+
+                                    <div>
+                                        <h3>Lectura capítulo 3</h3>
+                                        <span class="grupo-tarea"> 7° - Grupo B </span>
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="boton-acordeon"
+                                    onclick="mostrarDetalleTarea(this)"
+                                    aria-label="Mostrar información de la tarea"
+                                >
+                                    <i data-lucide="chevron-down"></i>
+                                </button>
+                            </div>
+
+                            <div class="tarea-detalle">
+                                <div class="informacion-tarea">
+                                    <div>
+                                        <strong>Descripción</strong>
+                                        <p>Leer el capítulo 3 y realizar un resumen.</p>
+                                    </div>
+
+                                    <div>
+                                        <strong>Fecha de entrega</strong>
+                                        <p>02/10/2026</p>
+                                    </div>
+                                </div>
+
+                                <div class="acciones-tarea">
+                                    <button class="boton-accion boton-enviar" onclick="enviarTarea(2)">
+                                        <i data-lucide="send"></i>
+                                        <span>Enviar</span>
+                                    </button>
+
+                                    <button class="boton-accion boton-subir" onclick="subirInformacion(2)">
+                                        <i data-lucide="upload"></i>
+                                        <span>Subir información</span>
+                                    </button>
+
+                                    <button class="boton-accion boton-eliminar" onclick="eliminarTarea(2)">
+                                        <i data-lucide="trash-2"></i>
+                                        <span>Eliminar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="campo">
-                        <label for="param-moneda">Símbolo de moneda</label>
-                        <input type="text" id="param-moneda" placeholder="Ej: $">
-                    </div>
-                    <div class="campo">
-                        <label for="param-iva">Porcentaje de IVA (%)</label>
-                        <input type="number" id="param-iva" placeholder="Ej: 19" min="0" max="100">
-                    </div>
-                    <div id="error-parametros" class="mensaje-error"></div>
-                    <button class="boton boton-guardar" onclick="guardarParametros()">Guardar parámetros</button>
-                </div>
+                </section>
 
-                <!-- Aquí mostramos los parámetros ya guardados, para que
-                     el aprendiz vea que sí quedaron almacenados -->
-                <div id="resumen-parametros" style="margin-top:10px; font-size:14px;"></div>
-            </section>
+                <!-- ============ SECCIÓN 3: PRODUCTOS ============ -->
+                <section id="seccion-productos" class="seccion">
+                    <div class="encabezado-seccion">
+                        <h1>Calendario de tareas</h1>
+                        <p>Consulta las tareas asignadas por fecha, grado y grupo.</p>
+                    </div>
 
-        </main>
+                    <!-- Controles del calendario -->
+                    <div class="controles-calendario">
+                        <button class="boton boton-secundario" onclick="mesAnterior()">
+                            <i data-lucide="chevron-left"></i>
+                            Anterior
+                        </button>
+
+                        <h2 id="mes-anio"></h2>
+
+                        <button class="boton boton-secundario" onclick="mesSiguiente()">
+                            Siguiente
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Calendario -->
+                    <div class="calendario">
+                        <!-- Días de la semana -->
+                        <div class="dias-semana">
+                            <div>Lunes</div>
+                            <div>Martes</div>
+                            <div>Miércoles</div>
+                            <div>Jueves</div>
+                            <div>Viernes</div>
+                            <div>Sábado</div>
+                            <div>Domingo</div>
+                        </div>
+
+                        <!-- Aquí JavaScript generará los días -->
+                        <div id="dias-calendario" class="dias-calendario"></div>
+                    </div>
+                </section>
+
+                <!-- ============ SECCIÓN 4: CLIENTES ============ -->
+
+                <section id="seccion-clientes" class="seccion">
+                    <div class="encabezado-seccion">
+                        <h1>Asignación de tareas</h1>
+                        <p>Asigna tareas a cada grado y grupo.</p>
+                    </div>
+
+                    <!-- Formulario para asignar una tarea -->
+                    <div class="formulario">
+                        <!-- Grado -->
+                        <div class="campo">
+                            <label for="tarea-grado">Grado</label>
+
+                            <select id="tarea-grado">
+                                <option value="">Seleccionar grado</option>
+                                <option value="Preescolar">Preescolar</option>
+                                <option value="1°">1°</option>
+                                <option value="2°">2°</option>
+                                <option value="3°">3°</option>
+                                <option value="4°">4°</option>
+                                <option value="5°">5°</option>
+                                <option value="6°">6°</option>
+                                <option value="7°">7°</option>
+                                <option value="8°">8°</option>
+                                <option value="9°">9°</option>
+                                <option value="10°">10°</option>
+                                <option value="11°">11°</option>
+                            </select>
+                        </div>
+
+                        <!-- Grupo -->
+                        <div class="campo">
+                            <label for="tarea-grupo">Grupo</label>
+
+                            <select id="tarea-grupo">
+                                <option value="">Seleccionar grupo</option>
+                                <option value="A">Grupo A</option>
+                                <option value="B">Grupo B</option>
+                                <option value="C">Grupo C</option>
+                                <option value="D">Grupo D</option>
+                            </select>
+                        </div>
+
+                        <!-- Nombre de la tarea -->
+                        <div class="campo">
+                            <label for="tarea-nombre">Nombre de la tarea</label>
+
+                            <input type="text" id="tarea-nombre" placeholder="Ej: Taller de matemáticas" />
+                        </div>
+                        <!-- Fecha de entrega -->
+                        <div class="campo">
+                            <label for="tarea-fecha">Fecha de entrega</label>
+
+                            <input type="date" id="tarea-fecha" />
+                        </div>
+                        <!-- Descripción -->
+                        <div class="campo campo-descripcion">
+                            <label for="tarea-descripcion">Descripción</label>
+
+                            <textarea id="tarea-descripcion" placeholder="Escribe las instrucciones de la tarea">
+                            </textarea>
+                        </div>
+
+                        <div id="error-tareas" class="mensaje-error"></div>
+
+                        <button class="boton boton-guardar" onclick="agregarTarea()">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                data-lucide="plus"
+                                aria-hidden="true"
+                                class="lucide lucide-plus"
+                            >
+                                <path d="M5 12h14"></path>
+                                <path d="M12 5v14"></path>
+                            </svg>
+                            Asignar tarea
+                        </button>
+                    </div>
+
+                    <!-- Tabla de tareas asignadas -->
+                    <div class="tabla-contenedor">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Grado</th>
+                                    <th>Grupo</th>
+                                    <th>Tarea</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha de entrega</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tabla-tareas">
+                                <!-- JavaScript agregará aquí las tareas -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ============ SECCIÓN 5: PARÁMETROS GENERALES ============ -->
+     <section id="seccion-parametros" class="seccion">
+
+    <div class="encabezado-seccion">
+        <h1>Comunicación con padres</h1>
+        <p>
+            Consulta las notas enviadas por el profesor y responde
+            a las observaciones del estudiante.
+        </p>
     </div>
 
 
-</body>
+    <!-- NOTA DEL PROFESOR -->
+    <div class="nota-profesor">
+
+        <div class="nota-encabezado">
+
+            <div class="nota-profesor-titulo">
+                <i data-lucide="message-circle"></i>
+
+                <div>
+                    <h2>Nota del profesor</h2>
+                    <span>Comunicación académica</span>
+                </div>
+            </div>
+
+            <span class="fecha-nota">
+                25/09/2026
+            </span>
+
+        </div>
+
+
+        <!-- INFORMACIÓN DEL ESTUDIANTE -->
+        <div class="informacion-estudiante">
+
+            <div class="campo">
+                <label>Estudiante</label>
+                <input 
+                    type="text"
+                    value="Juan Pérez"
+                    readonly>
+            </div>
+
+            <div class="campo">
+                <label>Grado</label>
+                <input 
+                    type="text"
+                    value="6° - Grupo A"
+                    readonly>
+            </div>
+
+        </div>
+
+
+        <!-- MENSAJE DEL PROFESOR -->
+        <div class="mensaje-profesor">
+
+            <label>
+                Mensaje del profesor
+            </label>
+
+            <div class="mensaje-contenido">
+
+                <i data-lucide="user-round"></i>
+
+                <p>
+                    El estudiante debe reforzar los ejercicios de
+                    matemáticas correspondientes al tema trabajado
+                    durante esta semana.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESPUESTA DEL PADRE -->
+        <div class="respuesta-padre">
+
+            <label for="respuesta-padre">
+                Respuesta del padre o acudiente
+            </label>
+
+            <textarea
+                id="respuesta-padre"
+                placeholder="Escriba aquí su respuesta al profesor..."
+                rows="5"></textarea>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+        <div class="acciones-respuesta">
+
+            <button
+                class="boton boton-guardar"
+                onclick="enviarRespuestaPadre()">
+
+                <i data-lucide="send"></i>
+                Enviar respuesta
+
+            </button>
+
+        </div>
+
+
+        <!-- ESTADO -->
+        <div 
+            id="estado-respuesta"
+            class="estado-respuesta">
+        </div>
+
+    </div>
+
+</section>
+            </main>
+        </div>
+
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script>
+            lucide.createIcons();
+        </script>
+        <script src="/script.js"></script>
+    </body>
 </html>

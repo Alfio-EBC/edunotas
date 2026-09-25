@@ -1,5 +1,4 @@
-
-        /* ============================================================
+/* ============================================================
            SECCIÓN CSS
            ============================================================
            CSS sirve para darle estilo (colores, tamaños, espacios)
@@ -9,236 +8,983 @@
            principal, solo lo cambias UNA vez aquí arriba.
         ============================================================ */
 
-        :root {
-            --color-primario: #002556;      /* Azul oscuro - menú lateral */
-            --color-primario-claro: #2c5282; /* Azul un poco más claro (hover) */
-            --color-secundario: #2f855a;     /* Verde - botones de "guardar" */
-            --color-peligro: #c53030;        /* Rojo - botones de "eliminar" */
-            --color-fondo: #f4f6f8;          /* Gris muy claro - fondo general */
-            --color-borde: #d9dfe4;          /* Gris para bordes de tablas/inputs */
-            --color-texto: #2d3748;          /* Casi negro para el texto */
-            --radio-bordes: 8px;             /* Bordes redondeados reutilizables */
-        }
+:root {
+    --color-primario: #05094e; /* Azul oscuro - menú lateral */
+    --color-primario-claro: #060f9b; /* Azul un poco más claro (hover) */
+    --color-secundario: #2f855a; /* Verde - botones de "guardar" */
+    --color-peligro: #c53030; /* Rojo - botones de "eliminar" */
+    --color-fondo: #f4f6f8; /* Gris muy claro - fondo general */
+    --color-borde: #d9dfe4; /* Gris para bordes de tablas/inputs */
+    --color-texto: #2d3748; /* Casi negro para el texto */
+    --color-texto-blanco: #ffff; /* Casi negro para el texto */
+    --radio-bordes: 8px; /* Bordes redondeados reutilizables */
+}
 
-        /* El "*" selecciona TODOS los elementos de la página.
+/* El "*" selecciona TODOS los elementos de la página.
            Esto es una práctica común para "resetear" márgenes y
            rellenos que el navegador pone por defecto. */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box; /* Hace que el ancho/alto incluyan el padding */
-        }
-
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--color-fondo);
-            color: var(--color-texto);
-        }
-
-        /* Contenedor general: usamos "flex" para poner el menú
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Hace que el ancho/alto incluyan el padding */
+}
+#seccion-ingreso {
+    width: 36%;
+}
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+.logo {
+    background-color: white;
+    padding: 13px;
+}
+.logo span {
+    font-size: 0.8rem;
+    display: table;
+    line-height: 1em;
+}
+/* Contenedor general: usamos "flex" para poner el menú
            lateral y el contenido uno al lado del otro. */
-        .contenedor-app {
-            display: flex;
-            min-height: 100vh; /* 100% del alto de la pantalla */
-        }
+.contenedor-app {
+    display: flex;
+    min-height: 100vh; /* 100% del alto de la pantalla */
+}
 
-        /* ---------- MENÚ LATERAL (barra izquierda) ---------- */
-        .menu-lateral {
-            width: 240px;
-            background-color: var(--color-primario);
-            color: white;
-            display: flex;
-            flex-direction: column; /* los elementos van uno debajo del otro */
-            flex-shrink: 0; /* que no se encoja si la pantalla es pequeña */
-        }
+/* ---------- MENÚ LATERAL (barra izquierda) ---------- */
+.menu-lateral {
+    width: 200px;
+    background-color: var(--color-primario);
+    color: white;
+    display: flex;
+    flex-direction: column; /* los elementos van uno debajo del otro */
+    flex-shrink: 0; /* que no se encoja si la pantalla es pequeña */
+}
 
-        .menu-lateral .logo {
-            padding: 22px 20px;
-            font-size: 20px;
-            font-weight: bold;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-        }
+.menu-lateral .logo {
+    padding: 22px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
 
-        .menu-lateral .logo span {
-            display: block;
-            font-size: 12px;
-            font-weight: normal;
-            opacity: 0.75;
-            margin-top: 4px;
-        }
+.menu-lateral .logo span {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    opacity: 0.75;
+    margin-top: 4px;
+}
+.boton-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        /* Cada botón del menú. Usamos <button> en vez de <a> porque
+.boton-menu svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+/* Cada botón del menú. Usamos <button> en vez de <a> porque
            no vamos a cambiar de página real, solo mostrar/ocultar
            secciones con JavaScript. */
-        .menu-lateral button {
-            background: none;
-            border: none;
-            color: white;
-            text-align: left;
-            padding: 16px 22px;
-            font-size: 15px;
-            cursor: pointer; /* el cursor cambia a "manito" al pasar encima */
-            border-left: 4px solid transparent; /* espacio reservado para el efecto activo */
-            transition: 0.2s; /* animación suave al cambiar de color */
-        }
+.menu-lateral button {
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    padding: 20px 22px;
+    font-size: 15px;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: 0.2s;
+}
 
-        .menu-lateral button:hover {
-            background-color: var(--color-primario-claro);
-        }
+.menu-lateral button:hover {
+    background-color: var(--color-primario-claro);
+}
 
-        /* Esta clase se agrega/quita con JavaScript para marcar
+/* Esta clase se agrega/quita con JavaScript para marcar
            cuál botón del menú está activo actualmente */
-        .menu-lateral button.activo {
-            background-color: var(--color-primario-claro);
-            border-left: 4px solid var(--color-secundario);
-            font-weight: bold;
-        }
+.menu-lateral button.activo {
+    background-color: var(--color-primario-claro);
+    border-left: 4px solid var(--color-secundario);
+    font-weight: bold;
+}
 
-        /* ---------- CONTENIDO PRINCIPAL (lado derecho) ---------- */
-        .contenido-principal {
-            flex: 1; /* ocupa todo el espacio restante */
-            padding: 30px;
-            max-width: 1100px;
-        }
+/* ---------- CONTENIDO PRINCIPAL (lado derecho) ---------- */
+.contenido-principal {
+    flex: 1;
+    max-width: 100%;
+}
+main.contenido-principal {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgb(0 37 86 / 0%), rgb(0 4 10 / 31%)), url(./img/estudiante.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.encabezado-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        .encabezado-seccion {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+.encabezado-seccion h1 {
+    font-size: 22px;
+    color: var(--color-texto-blanco);
+}
 
-        .encabezado-seccion h1 {
-            font-size: 22px;
-            color: var(--color-primario);
-        }
-
-        /* Cada "sección" (Ingreso, Proveedores, Productos, etc.)
+/* Cada "sección" (Ingreso, Proveedores, Productos, etc.)
            está oculta por defecto con display:none. JavaScript le
            agrega la clase "seccion-activa" a la que corresponde
            mostrar, y esa clase la vuelve visible. */
-        .seccion {
-            display: none;
-            background: white;
-            padding: 25px;
-            border-radius: var(--radio-bordes);
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-        }
+.seccion {
+    display: none;
+    background: #05094ed1;
+    border: 1px solid #00088f;
+    padding: 25px;
+    border-radius: var(--radio-bordes);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    width: 80%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
+    position: relative;
+    min-height: auto;
+}
 
-        .seccion.seccion-activa {
-            display: block;
-        }
+.seccion.seccion-activa {
+    display: block;
+}
 
-        /* ---------- FORMULARIOS ---------- */
-        .formulario {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* dos columnas iguales */
-            gap: 15px;
-            margin-bottom: 20px;
-        }
+/* ---------- FORMULARIOS ---------- */
+.formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* dos columnas iguales */
+    gap: 15px;
 
-        .campo {
-            display: flex;
-            flex-direction: column;
-        }
+}
 
-        .campo label {
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--color-primario);
-        }
+.campo {
+    display: flex;
+    flex-direction: column;
+}
 
-        .campo input,
-        .campo select {
-            padding: 9px 10px;
-            border: 1px solid var(--color-borde);
-            border-radius: 6px;
-            font-size: 14px;
-        }
+.campo label {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--color-texto-blanco);
+}
 
-        .mensaje-error {
-            grid-column: 1 / -1; /* ocupa las dos columnas */
-            color: var(--color-peligro);
-            font-size: 13px;
-            font-weight: bold;
-            min-height: 18px; /* reserva espacio aunque esté vacío */
-        }
+.campo input,
+.campo select {
+    padding: 9px 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    font-size: 14px;
+}
+.campo-descripcion {
+    grid-column: 1 / -1;
+}
 
-        /* Botones reutilizables */
-        .boton {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            cursor: pointer;
-            font-weight: bold;
-            color: white;
-        }
+.campo-descripcion textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+.mensaje-error {
+    grid-column: 1 / -1; /* ocupa las dos columnas */
+    color: var(--color-peligro);
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 18px; /* reserva espacio aunque esté vacío */
+}
 
-        .boton-guardar {
-            background-color: var(--color-secundario);
-            grid-column: 1 / -1;
-            justify-self: start; /* que el botón no se estire todo el ancho */
-        }
+/* Botones reutilizables */
+.boton {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
 
-        .boton-guardar:hover { opacity: 0.9; }
+.boton-guardar {
+    background-color: var(--color-secundario);
+    grid-column: 1 / -1;
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 35px;
+}
 
-        .boton-eliminar {
-            background-color: var(--color-peligro);
-            padding: 6px 12px;
-            font-size: 12px;
-        }
+.boton-guardar:hover {
+    opacity: 0.9;
+}
 
-        /* ---------- TABLAS ---------- */
-        table {
-            width: 100%;
-            border-collapse: collapse; /* que los bordes no se dupliquen */
-        }
+.boton-eliminar {
+    background-color: var(--color-peligro);
+    padding: 6px 12px;
+    font-size: 12px;
+}
 
-        th, td {
-            padding: 10px;
-            border-bottom: 1px solid var(--color-borde);
-            text-align: left;
-            font-size: 14px;
-        }
+/* ---------- TABLAS ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse; /* que los bordes no se dupliquen */
+}
 
-        th {
-            background-color: var(--color-fondo);
-            color: var(--color-primario);
-        }
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid var(--color-borde);
+    text-align: left;
+    font-size: 14px;
+}
 
-        .tabla-vacia {
-            text-align: center;
-            color: #888;
-            padding: 20px;
-            font-style: italic;
-        }
+th {
+    background-color: var(--color-fondo);
+    color: var(--color-primario);
+}
 
-        /* ---------- PANTALLA DE INGRESO (LOGIN) ---------- */
-        .caja-login {
-            max-width: 380px;
-            margin: 40px auto;
-        }
+.tabla-vacia {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+    font-style: italic;
+}
 
-        .bienvenida {
-            background-color: #e6fffa;
-            border: 1px solid var(--color-secundario);
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 15px;
-        }
+/* ---------- PANTALLA DE INGRESO (LOGIN) ---------- */
+.caja-login {
+margin: 0px 0px;
+}
 
-        /* Cuando la app está "bloqueada" (nadie ha iniciado sesión)
+.bienvenida {
+    background-color: #e6fffa;
+    border: 1px solid var(--color-secundario);
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+/* Cuando la app está "bloqueada" (nadie ha iniciado sesión)
            ocultamos el menú de las otras secciones con esta clase */
-        .menu-lateral button:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+.menu-lateral button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+/* ============================================================
+           SECCIÓN CSS
+           ============================================================
+           CSS sirve para darle estilo (colores, tamaños, espacios)
+           a las etiquetas HTML. Aquí usamos "variables CSS" (los
+           :root { --nombre: valor; }) para no repetir colores por
+           todo el archivo: si luego quieres cambiar el color
+           principal, solo lo cambias UNA vez aquí arriba.
+        ============================================================ */
 
-        /* Para que se vea bien también en pantallas pequeñas (celular) */
-        @media (max-width: 700px) {
-            .contenedor-app { flex-direction: column; }
-            .menu-lateral { width: 100%; }
-            .formulario { grid-template-columns: 1fr; }
-        }
+:root {
+    --color-primario: #05094e; /* Azul oscuro - menú lateral */
+    --color-primario-claro: #060f9b; /* Azul un poco más claro (hover) */
+    --color-secundario: #2f855a; /* Verde - botones de "guardar" */
+    --color-peligro: #c53030; /* Rojo - botones de "eliminar" */
+    --color-fondo: #f4f6f8; /* Gris muy claro - fondo general */
+    --color-borde: #d9dfe4; /* Gris para bordes de tablas/inputs */
+    --color-texto: #2d3748; /* Casi negro para el texto */
+    --color-texto-blanco: #ffff; /* Casi negro para el texto */
+    --radio-bordes: 8px; /* Bordes redondeados reutilizables */
+}
+
+/* El "*" selecciona TODOS los elementos de la página.
+           Esto es una práctica común para "resetear" márgenes y
+           rellenos que el navegador pone por defecto. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Hace que el ancho/alto incluyan el padding */
+}
+#seccion-ingreso {
+    width: 36%;
+}
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+.logo {
+    background-color: white;
+    padding: 13px;
+}
+.logo span {
+    font-size: 0.8rem;
+    display: table;
+    line-height: 1em;
+}
+/* Contenedor general: usamos "flex" para poner el menú
+           lateral y el contenido uno al lado del otro. */
+.contenedor-app {
+    display: flex;
+    min-height: 100vh; /* 100% del alto de la pantalla */
+}
+
+/* ---------- MENÚ LATERAL (barra izquierda) ---------- */
+.menu-lateral {
+    width: 200px;
+    background-color: var(--color-primario);
+    color: white;
+    display: flex;
+    flex-direction: column; /* los elementos van uno debajo del otro */
+    flex-shrink: 0; /* que no se encoja si la pantalla es pequeña */
+}
+
+.menu-lateral .logo {
+    padding: 22px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.menu-lateral .logo span {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    opacity: 0.75;
+    margin-top: 4px;
+}
+.boton-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.boton-menu svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+/* Cada botón del menú. Usamos <button> en vez de <a> porque
+           no vamos a cambiar de página real, solo mostrar/ocultar
+           secciones con JavaScript. */
+.menu-lateral button {
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    padding: 20px 22px;
+    font-size: 15px;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: 0.2s;
+}
+
+.menu-lateral button:hover {
+    background-color: var(--color-primario-claro);
+}
+
+/* Esta clase se agrega/quita con JavaScript para marcar
+           cuál botón del menú está activo actualmente */
+.menu-lateral button.activo {
+    background-color: var(--color-primario-claro);
+    border-left: 4px solid var(--color-secundario);
+    font-weight: bold;
+}
+
+/* ---------- CONTENIDO PRINCIPAL (lado derecho) ---------- */
+.contenido-principal {
+    flex: 1;
+    max-width: 100%;
+}
+main.contenido-principal {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgb(0 37 86 / 0%), rgb(0 4 10 / 31%)), url(./img/estudiante.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.encabezado-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.encabezado-seccion h1 {
+    font-size: 22px;
+    color: var(--color-texto-blanco);
+}
+
+/* Cada "sección" (Ingreso, Proveedores, Productos, etc.)
+           está oculta por defecto con display:none. JavaScript le
+           agrega la clase "seccion-activa" a la que corresponde
+           mostrar, y esa clase la vuelve visible. */
+.seccion {
+    display: none;
+    background: #05094ed1;
+    border: 1px solid #00088f;
+    padding: 25px;
+    border-radius: var(--radio-bordes);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    width: 80%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
+    position: relative;
+    min-height: auto;
+}
+
+.seccion.seccion-activa {
+    display: block;
+}
+
+/* ---------- FORMULARIOS ---------- */
+.formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* dos columnas iguales */
+    gap: 15px;
+
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--color-texto-blanco);
+}
+
+.campo input,
+.campo select {
+    padding: 9px 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    font-size: 14px;
+}
+.campo-descripcion {
+    grid-column: 1 / -1;
+}
+
+.campo-descripcion textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+.mensaje-error {
+    grid-column: 1 / -1; /* ocupa las dos columnas */
+    color: var(--color-peligro);
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 18px; /* reserva espacio aunque esté vacío */
+}
+
+/* Botones reutilizables */
+.boton {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    background-color: var(--color-secundario);
+}
+
+.boton-guardar {
+    background-color: var(--color-secundario);
+    grid-column: 1 / -1;
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.boton-guardar:hover {
+    opacity: 0.9;
+}
+
+.boton-eliminar {
+    background-color: var(--color-peligro);
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* ---------- TABLAS ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse; /* que los bordes no se dupliquen */
+}
+
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid var(--color-borde);
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background-color: var(--color-fondo);
+    color: var(--color-primario);
+}
+
+.tabla-vacia {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+    font-style: italic;
+}
+
+/* ---------- PANTALLA DE INGRESO (LOGIN) ---------- */
+.caja-login {
+margin: 0px 0px;
+}
+
+.bienvenida {
+    background-color: #e6fffa;
+    border: 1px solid var(--color-secundario);
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+/* Cuando la app está "bloqueada" (nadie ha iniciado sesión)
+           ocultamos el menú de las otras secciones con esta clase */
+.menu-lateral button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.controles-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.controles-calendario h2 {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.boton-secundario {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* ============================= */
+/* CALENDARIO */
+/* ============================= */
+
+.calendario {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+
+/* Días de la semana */
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #1c1e58;
+    color: white;
+}
+
+.dias-semana div {
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* Días */
+
+.dias-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+
+/* Cada día */
+
+.dia {
+    min-height: 120px;
+    padding: 8px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #ffffff;
+}
+
+.dia-numero {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+
+/* Días que no pertenecen al mes */
+
+.dia.vacio {
+    background: #f5f5f5;
+}
+
+
+/* Día actual */
+
+.dia.hoy {
+    background: #eef6f8;
+}
+
+
+/* ============================= */
+/* TAREA */
+/* ============================= */
+
+.tarea-calendario {
+    background: #355C6C;
+    color: white;
+    border-radius: 5px;
+    padding: 6px;
+    margin-top: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.tarea-calendario strong {
+    display: block;
+}
+
+.tarea-calendario span {
+    display: block;
+    margin-top: 3px;
+}
+
+
+.contador-tareas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f5f7f8;
+    border-radius: 8px;
+}
+
+.contador-tareas svg {
+    width: 22px;
+    height: 22px;
+}
+
+.lista-tareas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tarea-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    overflow: hidden;
+}
+
+
+/* CABECERA */
+
+.tarea-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 18px;
+}
+
+.tarea-titulo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tarea-titulo h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+}
+
+.grupo-tarea {
+    color: #666;
+    font-size: 14px;
+}
+
+
+/* NÚMERO */
+
+.numero-tarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: #355C6C;
+    color: white;
+
+    font-weight: bold;
+}
+
+
+/* ACORDEÓN */
+
+.boton-acordeon {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.boton-acordeon svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+
+/* DETALLE */
+
+.tarea-detalle {
+    display: none;
+    padding: 0 18px 18px;
+    border-top: 1px solid #eee;
+}
+
+.tarea-detalle.activo {
+    display: block;
+}
+
+.informacion-tarea {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    padding: 15px 0;
+}
+
+.informacion-tarea strong {
+    font-size: 14px;
+}
+
+.informacion-tarea p {
+    margin: 6px 0 0;
+    color: #555;
+}
+
+
+/* BOTONES */
+
+.acciones-tarea {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.boton-accion {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 12px;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.boton-accion svg {
+    width: 17px;
+    height: 17px;
+}
+
+.boton-enviar {
+    background: #355C6C;
+    color: white;
+}
+
+.boton-subir {
+    background: #e8f1f3;
+    color: #355C6C;
+}
+
+.boton-eliminar {
+    background: #fbeaea;
+    color: #c62828;
+}
+/* Para que se vea bien también en pantallas pequeñas (celular) */
+@media (max-width: 700px) {
+    .contenedor-app {
+        flex-direction: column;
+    }
+    .menu-lateral {
+        width: 100%;
+    }
+    .formulario {
+        grid-template-columns: 1fr;
+    }
+}
+.nota-profesor {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 100%;
+}
+
+.nota-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.nota-profesor-titulo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nota-profesor-titulo svg {
+    width: 24px;
+    height: 24px;
+}
+
+.nota-profesor-titulo h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.nota-profesor-titulo span {
+    font-size: 13px;
+    color: #777;
+}
+
+.fecha-nota {
+    font-size: 13px;
+    color: #777;
+}
+
+
+/* INFORMACIÓN DEL ESTUDIANTE */
+
+.informacion-estudiante {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+/* MENSAJE */
+
+.mensaje-profesor {
+    margin-bottom: 20px;
+}
+
+.mensaje-profesor > label,
+.respuesta-padre > label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.mensaje-contenido {
+    display: flex;
+    gap: 12px;
+    padding: 15px;
+
+    background: #f5f7f8;
+    border-left: 4px solid #355C6C;
+
+    border-radius: 5px;
+}
+
+.mensaje-contenido svg {
+    flex-shrink: 0;
+    width: 20px;
+}
+
+.mensaje-contenido p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+/* RESPUESTA */
+
+.respuesta-padre {
+    width: 100%;
+}
+
+.respuesta-padre textarea {
+    width: 100%;
+    min-height: 130px;
+    padding: 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    resize: vertical;
+    box-sizing: border-box;
+
+    font-family: inherit;
+    font-size: 14px;
+}
+
+
+/* BOTÓN */
+
+.acciones-respuesta {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.boton-guardar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* ESTADO */
+
+.estado-respuesta {
+    margin-top: 12px;
+    font-size: 14px;
+}
+/* Para que se vea bien también en pantallas pequeñas (celular) */
+@media (max-width: 700px) {
+    .contenedor-app {
+        flex-direction: column;
+    }
+    .menu-lateral {
+        width: 100%;
+    }
+    .formulario {
+        grid-template-columns: 1fr;
+    }
+}

@@ -370,3 +370,59 @@
         dibujarTablaClientes();
         mostrarResumenParametros();
 
+
+
+
+
+
+        function mostrarDetalleTarea(boton) {
+
+    const tarea = boton.closest(".tarea-item");
+
+    const detalle = tarea.querySelector(".tarea-detalle");
+
+    const icono = boton.querySelector("svg");
+
+
+    detalle.classList.toggle("activo");
+
+
+    if (detalle.classList.contains("activo")) {
+
+        icono.style.transform = "rotate(180deg)";
+
+    } else {
+
+        icono.style.transform = "rotate(0deg)";
+
+    }
+}
+
+
+function enviarTarea(id) {
+
+    alert("Tarea " + id + " enviada correctamente.");
+
+}
+
+
+function subirInformacion(id) {
+
+    alert("Subir información de la tarea " + id);
+
+}
+
+
+function eliminarTarea(id) {
+
+    const confirmar = confirm(
+        "¿Está seguro de eliminar esta tarea?"
+    );
+
+    if (confirmar) {
+
+        alert("Tarea " + id + " eliminada.");
+
+    }
+
+}
