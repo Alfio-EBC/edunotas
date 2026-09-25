@@ -373,121 +373,79 @@
                 </section>
 
                 <!-- ============ SECCIÓN 5: PARÁMETROS GENERALES ============ -->
-     <section id="seccion-parametros" class="seccion">
+                <section id="seccion-parametros" class="seccion">
+                    <div class="encabezado-seccion">
+                        <h1>Comunicación con padres</h1>
+                        <p>
+                            Consulta las notas enviadas por el profesor y responde a las observaciones del estudiante.
+                        </p>
+                    </div>
 
-    <div class="encabezado-seccion">
-        <h1>Comunicación con padres</h1>
-        <p>
-            Consulta las notas enviadas por el profesor y responde
-            a las observaciones del estudiante.
-        </p>
-    </div>
+                    <!-- NOTA DEL PROFESOR -->
+                    <div class="nota-profesor">
+                        <div class="nota-encabezado">
+                            <div class="nota-profesor-titulo">
+                                <i data-lucide="message-circle"></i>
 
+                                <div>
+                                    <h2>Nota del profesor</h2>
+                                    <span>Comunicación académica</span>
+                                </div>
+                            </div>
 
-    <!-- NOTA DEL PROFESOR -->
-    <div class="nota-profesor">
+                            <span class="fecha-nota"> 25/09/2026 </span>
+                        </div>
 
-        <div class="nota-encabezado">
+                        <!-- INFORMACIÓN DEL ESTUDIANTE -->
+                        <div class="informacion-estudiante">
+                            <div class="campo">
+                                <label>Estudiante</label>
+                                <input type="text" value="Juan Pérez" readonly />
+                            </div>
 
-            <div class="nota-profesor-titulo">
-                <i data-lucide="message-circle"></i>
+                            <div class="campo">
+                                <label>Grado</label>
+                                <input type="text" value="6° - Grupo A" readonly />
+                            </div>
+                        </div>
 
-                <div>
-                    <h2>Nota del profesor</h2>
-                    <span>Comunicación académica</span>
-                </div>
-            </div>
+                        <!-- MENSAJE DEL PROFESOR -->
+                        <div class="mensaje-profesor">
+                            <label> Mensaje del profesor </label>
 
-            <span class="fecha-nota">
-                25/09/2026
-            </span>
+                            <div class="mensaje-contenido">
+                                <i data-lucide="user-round"></i>
 
-        </div>
+                                <p>
+                                    El estudiante debe reforzar los ejercicios de matemáticas correspondientes al tema
+                                    trabajado durante esta semana.
+                                </p>
+                            </div>
+                        </div>
 
+                        <!-- RESPUESTA DEL PADRE -->
+                        <div class="respuesta-padre">
+                            <label for="respuesta-padre"> Respuesta del padre o acudiente </label>
 
-        <!-- INFORMACIÓN DEL ESTUDIANTE -->
-        <div class="informacion-estudiante">
+                            <textarea
+                                id="respuesta-padre"
+                                placeholder="Escriba aquí su respuesta al profesor..."
+                                rows="5"
+                            ></textarea>
+                        </div>
 
-            <div class="campo">
-                <label>Estudiante</label>
-                <input 
-                    type="text"
-                    value="Juan Pérez"
-                    readonly>
-            </div>
+                        <!-- BOTÓN -->
+                        <div class="acciones-respuesta">
+                            <button class="boton boton-guardar" onclick="enviarRespuestaPadre()">
+                                <i data-lucide="send"></i>
+                                Enviar respuesta
+                            </button>
+                        </div>
 
-            <div class="campo">
-                <label>Grado</label>
-                <input 
-                    type="text"
-                    value="6° - Grupo A"
-                    readonly>
-            </div>
-
-        </div>
-
-
-        <!-- MENSAJE DEL PROFESOR -->
-        <div class="mensaje-profesor">
-
-            <label>
-                Mensaje del profesor
-            </label>
-
-            <div class="mensaje-contenido">
-
-                <i data-lucide="user-round"></i>
-
-                <p>
-                    El estudiante debe reforzar los ejercicios de
-                    matemáticas correspondientes al tema trabajado
-                    durante esta semana.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- RESPUESTA DEL PADRE -->
-        <div class="respuesta-padre">
-
-            <label for="respuesta-padre">
-                Respuesta del padre o acudiente
-            </label>
-
-            <textarea
-                id="respuesta-padre"
-                placeholder="Escriba aquí su respuesta al profesor..."
-                rows="5"></textarea>
-
-        </div>
-
-
-        <!-- BOTÓN -->
-        <div class="acciones-respuesta">
-
-            <button
-                class="boton boton-guardar"
-                onclick="enviarRespuestaPadre()">
-
-                <i data-lucide="send"></i>
-                Enviar respuesta
-
-            </button>
-
-        </div>
-
-
-        <!-- ESTADO -->
-        <div 
-            id="estado-respuesta"
-            class="estado-respuesta">
-        </div>
-
-    </div>
-
-</section>
+                        <!-- ESTADO -->
+                        <div id="estado-respuesta" class="estado-respuesta"></div>
+                    </div>
+                </section>
             </main>
         </div>
 

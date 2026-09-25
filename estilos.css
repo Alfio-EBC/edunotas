@@ -166,7 +166,6 @@ main.contenido-principal {
     display: grid;
     grid-template-columns: 1fr 1fr; /* dos columnas iguales */
     gap: 15px;
-
 }
 
 .campo {
@@ -264,7 +263,7 @@ th {
 
 /* ---------- PANTALLA DE INGRESO (LOGIN) ---------- */
 .caja-login {
-margin: 0px 0px;
+    margin: 0px 0px;
 }
 
 .bienvenida {
@@ -449,7 +448,6 @@ main.contenido-principal {
     display: grid;
     grid-template-columns: 1fr 1fr; /* dos columnas iguales */
     gap: 15px;
-
 }
 
 .campo {
@@ -548,7 +546,7 @@ th {
 
 /* ---------- PANTALLA DE INGRESO (LOGIN) ---------- */
 .caja-login {
-margin: 0px 0px;
+    margin: 0px 0px;
 }
 
 .bienvenida {
@@ -583,7 +581,6 @@ margin: 0px 0px;
     gap: 8px;
 }
 
-
 /* ============================= */
 /* CALENDARIO */
 /* ============================= */
@@ -595,7 +592,6 @@ margin: 0px 0px;
     overflow: hidden;
     border: 1px solid #ddd;
 }
-
 
 /* Días de la semana */
 
@@ -612,14 +608,12 @@ margin: 0px 0px;
     font-weight: bold;
 }
 
-
 /* Días */
 
 .dias-calendario {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 }
-
 
 /* Cada día */
 
@@ -636,13 +630,11 @@ margin: 0px 0px;
     margin-bottom: 8px;
 }
 
-
 /* Días que no pertenecen al mes */
 
 .dia.vacio {
     background: #f5f5f5;
 }
-
 
 /* Día actual */
 
@@ -650,13 +642,12 @@ margin: 0px 0px;
     background: #eef6f8;
 }
 
-
 /* ============================= */
 /* TAREA */
 /* ============================= */
 
 .tarea-calendario {
-    background: #355C6C;
+    background: #355c6c;
     color: white;
     border-radius: 5px;
     padding: 6px;
@@ -673,7 +664,6 @@ margin: 0px 0px;
     display: block;
     margin-top: 3px;
 }
-
 
 .contador-tareas {
     display: flex;
@@ -703,7 +693,6 @@ margin: 0px 0px;
     overflow: hidden;
 }
 
-
 /* CABECERA */
 
 .tarea-cabecera {
@@ -729,7 +718,6 @@ margin: 0px 0px;
     font-size: 14px;
 }
 
-
 /* NÚMERO */
 
 .numero-tarea {
@@ -742,12 +730,11 @@ margin: 0px 0px;
 
     border-radius: 50%;
 
-    background: #355C6C;
+    background: #355c6c;
     color: white;
 
     font-weight: bold;
 }
-
 
 /* ACORDEÓN */
 
@@ -763,7 +750,6 @@ margin: 0px 0px;
     height: 20px;
     transition: transform 0.2s ease;
 }
-
 
 /* DETALLE */
 
@@ -793,7 +779,6 @@ margin: 0px 0px;
     color: #555;
 }
 
-
 /* BOTONES */
 
 .acciones-tarea {
@@ -821,13 +806,13 @@ margin: 0px 0px;
 }
 
 .boton-enviar {
-    background: #355C6C;
+    background: #355c6c;
     color: white;
 }
 
 .boton-subir {
     background: #e8f1f3;
-    color: #355C6C;
+    color: #355c6c;
 }
 
 .boton-eliminar {
@@ -887,7 +872,6 @@ margin: 0px 0px;
     color: #777;
 }
 
-
 /* INFORMACIÓN DEL ESTUDIANTE */
 
 .informacion-estudiante {
@@ -896,7 +880,6 @@ margin: 0px 0px;
     gap: 15px;
     margin-bottom: 20px;
 }
-
 
 /* MENSAJE */
 
@@ -917,7 +900,7 @@ margin: 0px 0px;
     padding: 15px;
 
     background: #f5f7f8;
-    border-left: 4px solid #355C6C;
+    border-left: 4px solid #355c6c;
 
     border-radius: 5px;
 }
@@ -931,7 +914,6 @@ margin: 0px 0px;
     margin: 0;
     line-height: 1.5;
 }
-
 
 /* RESPUESTA */
 
@@ -954,7 +936,6 @@ margin: 0px 0px;
     font-size: 14px;
 }
 
-
 /* BOTÓN */
 
 .acciones-respuesta {
@@ -968,7 +949,6 @@ margin: 0px 0px;
     align-items: center;
     gap: 8px;
 }
-
 
 /* ESTADO */
 
